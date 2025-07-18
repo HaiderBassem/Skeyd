@@ -36,7 +36,16 @@ if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
         MANUAL_FINALIZATION
         ${PROJECT_SOURCES}
         skeydmanager.h skeydmanager.cpp
-        exception.h exception.cpp
+        keyboardwidget.h keyboardwidget.cpp
+
+
+
+
+
+
+
+
+
     )
 else()
     if(ANDROID)
