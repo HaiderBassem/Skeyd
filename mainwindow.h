@@ -23,7 +23,7 @@ public:
     void applyProfileWithPrivilege(const QString &sourceFile);
 
 protected:
-    bool eventFilter(QObject *watched, QEvent *event) override; // <<<<<<<<<<< أضف هذا
+    bool eventFilter(QObject *watched, QEvent *event) override;
 
 private slots:
     void on_CloseWindow_clicked();

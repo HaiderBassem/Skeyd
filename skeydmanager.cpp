@@ -12,11 +12,5 @@ void SkeydManager::start()
 
 void SkeydManager::run()
 {
-    // تنفيذ عمليات، ثم إرسال إشارة عند حدث معين
-
-    // مثال:
-    emit keyLogged("KeyA", "Pressed");
-
-    // لو حصل خطأ
-    // emit errorOccurred("An error happened");
+ // TODO
 }

@@ -21,7 +21,7 @@ MainWindow::MainWindow(QWidget *parent)
     ui->setupUi(this);
 
     KeyboardWidget* keyboard = new KeyboardWidget(ui->centralwidget);
-    keyboard->setGeometry(10, 450, 1450, 450);  // حسب الفراغ المطلوب
+    keyboard->setGeometry(10, 450, 1450, 450);
     keyboard->show();
 }
 
@@ -153,13 +153,13 @@ void MainWindow::on_scrollArea_2_customContextMenuRequested(const QPoint &)
         QPushButton *btn = new QPushButton(fileName);
         btn->setFixedSize(400, 50);
 
-        // ضغطة وحدة: عرض المحتوى + حفظ المسار الحالي
+
         connect(btn, &QPushButton::clicked, this, [=]() {
             currentProfilePath = profilesDir + fileName;
             showProfileContent(currentProfilePath);
         });
 
-        // ضغطة مزدوجة: تطبيق الملف
+
         btn->installEventFilter(this);
         btn->setProperty("filepath", profilesDir + fileName);
 
