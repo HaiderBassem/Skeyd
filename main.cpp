@@ -1,7 +1,10 @@
 #include <QApplication>
 #include <QThread>
+#include <QCoreApplication>
+#include "eventsworker.h"
 #include "skeydmanager.h"
 #include "mainwindow.h"
+
 
 int main(int argc, char *argv[])
 {
@@ -9,11 +12,14 @@ int main(int argc, char *argv[])
 
     MainWindow w;
     w.show();
-
+    EventsWorker worker;
+    worker.start();
     SkeydManager manager;
     QThread workerThread;
 
+
     manager.moveToThread(&workerThread);
+
 
     QObject::connect(&workerThread, &QThread::started, &manager, &SkeydManager::run);
 

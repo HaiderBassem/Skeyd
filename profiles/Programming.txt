@@ -1,0 +1,10 @@
+[ids]
+*
+
+[main]
+rightalt = left
+
+f23+leftshift+leftmeta = right
+escape = capslk
+left = up
+rightshift = backspace

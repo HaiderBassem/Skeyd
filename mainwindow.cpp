@@ -25,35 +25,56 @@ MainWindow::MainWindow(QWidget *parent)
     keyboard->show();
 }
 
+void MainWindow::clearLayout(QLayout *layout)
+{
+    if (!layout) return;
+    while (QLayoutItem* item = layout->takeAt(0)) {
+        if (item->widget()) {
+            item->widget()->deleteLater();
+        }
+        if (item->layout()) {
+            clearLayout(item->layout());
+        }
+        delete item;
+    }
+    delete layout;
+}
+
+
 MainWindow::~MainWindow()
 {
     delete ui;
 }
 
+
+
+
+
+
 void MainWindow::loadProfileButtons(const QString& filePath)
 {
     QFile file(filePath);
+    if (!file.exists()) {
+        QMessageBox::warning(this, "Error", "File does not exist: " + filePath);
+        return;
+    }
     if (!file.open(QIODevice::ReadOnly | QIODevice::Text)) {
-        QMessageBox::warning(this, "Error", "Cannot open file.");
+        QMessageBox::warning(this, "Error", "Cannot open file: " + filePath);
         return;
     }
 
     QTextStream in(&file);
-    bool inMainSection = false;
+
 
     QLayout* oldLayout = ui->scrollAreaWidgetContents->layout();
     if (oldLayout) {
-        QLayoutItem* item;
-        while ((item = oldLayout->takeAt(0)) != nullptr) {
-            if (item->widget()) {
-                delete item->widget();
-            }
-            delete item;
-        }
-        delete oldLayout;
+        clearLayout(oldLayout);
     }
 
-    QVBoxLayout* mainLayout = new QVBoxLayout(ui->scrollAreaWidgetContents);
+    QVBoxLayout* mainLayout = new QVBoxLayout;
+    ui->scrollAreaWidgetContents->setLayout(mainLayout);
+
+    bool inMainSection = false;
 
     while (!in.atEnd()) {
         QString line = in.readLine().trimmed();
@@ -66,7 +87,6 @@ void MainWindow::loadProfileButtons(const QString& filePath)
             }
             continue;
         }
-
         if (line.startsWith('[')) {
             break;
         }
@@ -92,14 +112,30 @@ void MainWindow::loadProfileButtons(const QString& filePath)
         mainLayout->addLayout(rowLayout);
     }
 
-    ui->scrollAreaWidgetContents->setLayout(mainLayout);
     file.close();
 }
 
+
+
+
 void MainWindow::showProfileContent(const QString& filePath)
 {
+
+    QLayout* oldLayout = ui->scrollAreaWidgetContents->layout();
+    if (oldLayout) {
+        QLayoutItem* item;
+        while ((item = oldLayout->takeAt(0)) != nullptr) {
+            if (item->widget()) {
+                delete item->widget();
+            }
+            delete item;
+        }
+        delete oldLayout;
+    }
+
     loadProfileButtons(filePath);
 }
+
 
 void MainWindow::applyProfileWithPrivilege(const QString &sourceFile)
 {
@@ -153,22 +189,21 @@ void MainWindow::on_scrollArea_2_customContextMenuRequested(const QPoint &)
         QPushButton *btn = new QPushButton(fileName);
         btn->setFixedSize(400, 50);
 
-
         connect(btn, &QPushButton::clicked, this, [=]() {
             currentProfilePath = profilesDir + fileName;
             showProfileContent(currentProfilePath);
         });
 
-
         btn->installEventFilter(this);
         btn->setProperty("filepath", profilesDir + fileName);
-
         layout->addWidget(btn);
     }
 
     container->setLayout(layout);
     ui->scrollArea_2->setWidget(container);
 }
+
+
 
 bool MainWindow::eventFilter(QObject *watched, QEvent *event)
 {
@@ -190,7 +225,7 @@ void MainWindow::on_LoadMap_clicked()
     QString fileName = QFileDialog::getOpenFileName(this, "Select File", QDir::homePath(), "*.txt");
     if (fileName.isEmpty()) return;
 
-    QString destDir = QDir::homePath() + "/Skeyd/profiles/";
+    QString destDir = QDir::homePath() + "/Skeyd/profiles";
     QDir().mkpath(destDir);
 
     QFileInfo fileInfo(fileName);
@@ -213,7 +248,7 @@ void MainWindow::on_CreateNewMap_clicked()
     if (!fileName.endsWith(".txt"))
         fileName += ".txt";
 
-    QString destDir = QDir::homePath() + "/Skeyd/profiles/";
+    QString destDir = QDir::homePath() + "/Skeyd/profiles";
     QDir().mkpath(destDir);
 
     QString destFile = destDir + fileName;

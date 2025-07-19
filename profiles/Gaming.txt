@@ -1,0 +1,8 @@
+[ids]
+*
+
+[main]
+
+k = f
+j = f
+k = d

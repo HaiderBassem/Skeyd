@@ -37,6 +37,8 @@ if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
         ${PROJECT_SOURCES}
         skeydmanager.h skeydmanager.cpp
         keyboardwidget.h keyboardwidget.cpp
+        events.h events.cpp
+        eventsworker.h
 
 
 

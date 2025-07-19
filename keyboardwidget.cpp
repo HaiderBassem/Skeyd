@@ -68,17 +68,17 @@ void KeyboardWidget::setupKeys()
     addBtn("↑", 4, col++, 1, 60);
     addBtn("End", 4, col++, 1, 70);
 
-    // Row 5: Ctrl, Fn, Alt, Space, Alt, Ctrl, Menu, Left, Down, Right
+    // Row 5: Ctrl, Fn, Alt, Space, Alt, Ctrl, Copilot, Left, Down, Right
     addBtn("Ctrl", 5, 0, 1, 70);
     addBtn("Fn", 5, 1, 1, 50);
     addBtn("Alt", 5, 2, 1, 70);
     addBtn("Space", 5, 3, 4, 280);
     addBtn("Alt", 5, 7, 1, 70);
-    addBtn("Ctrl", 5, 8, 1, 70);
-    addBtn("Menu", 5, 9, 1, 70);
+    addBtn("Copilot", 5, 8, 1, 70);
+    //addBtn("Menu", 5, 9, 1, 70);
     addBtn("←", 5, 10, 1, 60);
-    addBtn("↓", 5, 11, 1, 60);
-    addBtn("→", 5, 12, 1, 60);
+    addBtn("→", 5, 11, 1, 60);
+    addBtn("↓", 5, 12, 1, 60);
 }
 
 
