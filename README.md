@@ -19,8 +19,8 @@ sudo systemctl enable --now keyd
 
 Clone this repository and build it with CMake:
 ```bash
-git clone https://github.com/HaiderBassem m/Skeyd.git
-cd Skeyd
+git clone https://github.com/HaiderBassem/Skeyd.git ~/Skeyd
+cd ~/Skeyd
 mkdir build
 cd build
 cmake ..
