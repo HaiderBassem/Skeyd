@@ -1,2 +1,86 @@
 # Skeyd
-Linux keyboard customization 
+
+**Skeyd** is a simple GUI utility for managing keyboard remapping profiles using **[keyd](https://github.com/rvaiya/keyd)** on Linux.
+
+This program does **not** modify your keyboard map directly — instead, it generates and applies configuration files for **keyd**, so **keyd** must be installed and running first.
+
+---
+
+## 📌 Prerequisites
+
+Make sure you have `keyd` installed and enabled:
+
+```bash
+git clone https://github.com/rvaiya/keyd
+cd keyd
+make && sudo make install
+sudo systemctl enable --now keyd
+
+
+---
+
+##📦 Build
+
+Clone this repository and build it using CMake:
+
+git clone https://github.com/yourusername/Skeyd.git
+cd Skeyd
+mkdir build
+cd build
+cmake ..
+make
+
+
+---
+
+⚙️ Usage
+
+Launch the Skeyd binary.
+
+Create or load .txt keyboard mapping profiles.
+
+Double-click a profile to apply it (requires pkexec privileges).
+
+All profiles are saved under: ~/Skeyd/profiles.
+
+
+Note: Applying a profile overwrites /etc/keyd/default.conf.
+
+
+---
+
+📁 Profile Format
+
+Each profile is a simple .txt file with sections. Example:
+
+[main]
+key1 = value1
+key2 = value2
+
+[other]
+# other config...
+
+
+---
+
+✅ Features
+
+Create new profiles
+
+Load existing profiles
+
+Apply profiles safely with pkexec
+
+Delete unwanted profiles
+
+
+
+---
+
+⚠️ Disclaimer
+
+You must have keyd correctly installed and configured.
+
+Changing keyboard mappings may affect your system input; proceed with caution.
+
+
