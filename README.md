@@ -68,3 +68,5 @@ You must have keyd installed and configured correctly.
 Changing keyboard mappings may affect your system input — proceed with caution.
 
 
+## Now
+You need to edit some things int code to work on your system like system paths.
