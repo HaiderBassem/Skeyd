@@ -51,7 +51,7 @@ key2 = value2
 [other]
 # other config...
 
-##✅ Features
+## ✅ Features
 
 Create new profiles
 
