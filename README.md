@@ -15,7 +15,7 @@ make && sudo make install
 sudo systemctl enable --now keyd
 ```
 
-##📦 Build
+## 📦 Build
 
 Clone this repository and build it with CMake:
 ```bash
@@ -27,7 +27,7 @@ cmake ..
 make
 ```
 
-##⚙️ Usage
+## ⚙️ Usage
 
 Launch the Skeyd binary.
 
@@ -40,7 +40,7 @@ All profiles are saved under ~/Skeyd/profiles.
 Note: Applying a profile overwrites /etc/keyd/default.conf.
 
 
-##📁 Profile Format
+## 📁 Profile Format
 
 Each profile is a simple .txt file with sections. Example:
 
@@ -62,7 +62,7 @@ Apply profiles safely with pkexec
 Delete unwanted profiles
 
 
-##⚠️ Disclaimer
+## ⚠️ Disclaimer
 
 You must have keyd installed and configured correctly.
 Changing keyboard mappings may affect your system input — proceed with caution.
