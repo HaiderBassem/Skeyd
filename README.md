@@ -4,6 +4,8 @@
 
 This program **does not** modify your keyboard map directly — it generates and applies configuration files for **keyd**, so **keyd** must be installed and running first.
 
+
+![Screenshot](https://github.com/HaiderBassem/Skeyd/blob/main/Screenshot.png)
 ## 📌 Prerequisites
 
 Make sure `keyd` is installed and enabled:
